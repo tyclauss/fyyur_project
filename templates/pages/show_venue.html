@@ -4,46 +4,46 @@
 <div class="row">
 	<div class="col-sm-6">
 		<h1 class="monospace">
-			{{ venue.name }}
+			{{ venue.info.name }}
 		</h1>
 		<p class="subtitle">
-			ID: {{ venue.id }}
+			ID: {{ venue.info.id }}
 		</p>
 		<div class="genres">
-			{% for genre in venue.genres %}
+			{% for genre in venue.info.genres %}
 			<span class="genre">{{ genre }}</span>
 			{% endfor %}
 		</div>
 		<p>
-			<i class="fas fa-globe-americas"></i> {{ venue.city }}, {{ venue.state }}
+			<i class="fas fa-globe-americas"></i> {{ venue.info.city }}, {{ venue.info.state }}
 		</p>
 		<p>
-			<i class="fas fa-map-marker"></i> {% if venue.address %}{{ venue.address }}{% else %}No Address{% endif %}
+			<i class="fas fa-map-marker"></i> {% if venue.info.address %}{{ venue.info.address }}{% else %}No Address{% endif %}
 		</p>
 		<p>
-			<i class="fas fa-phone-alt"></i> {% if venue.phone %}{{ venue.phone }}{% else %}No Phone{% endif %}
+			<i class="fas fa-phone-alt"></i> {% if venue.info.phone %}{{ venue.info.phone }}{% else %}No Phone{% endif %}
 		</p>
 		<p>
-			<i class="fas fa-link"></i> {% if venue.website %}<a href="{{ venue.website }}" target="_blank">{{ venue.website }}</a>{% else %}No Website{% endif %}
+			<i class="fas fa-link"></i> {% if venue.info.website_link %}<a href="{{ venue.info.website_link }}" target="_blank">{{ venue.info.website_link }}</a>{% else %}No Website{% endif %}
 		</p>
 		<p>
-			<i class="fab fa-facebook-f"></i> {% if venue.facebook_link %}<a href="{{ venue.facebook_link }}" target="_blank">{{ venue.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
+			<i class="fab fa-facebook-f"></i> {% if venue.info.facebook_link %}<a href="{{ venue.info.facebook_link }}" target="_blank">{{ venue.info.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
 		</p>
-		{% if venue.seeking_talent %}
+		{% if venue.info.seeking_talent %}
 		<div class="seeking">
 			<p class="lead">Currently seeking talent</p>
 			<div class="description">
-				<i class="fas fa-quote-left"></i> {{ venue.seeking_description }} <i class="fas fa-quote-right"></i>
+				<i class="fas fa-quote-left"></i> {{ venue.info.seeking_description }} <i class="fas fa-quote-right"></i>
 			</div>
 		</div>
-		{% else %}	
+		{% else %}
 		<p class="not-seeking">
 			<i class="fas fa-moon"></i> Not currently seeking talent
 		</p>
 		{% endif %}
 	</div>
 	<div class="col-sm-6">
-		<img src="{{ venue.image_link }}" alt="Venue Image" />
+		<img src="{{ venue.info.image_link }}" alt="Venue Image" />
 	</div>
 </div>
 <section>
@@ -54,7 +54,7 @@
 			<div class="tile tile-show">
 				<img src="{{ show.artist_image_link }}" alt="Show Artist Image" />
 				<h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
-				<h6>{{ show.start_time|datetime('full') }}</h6>
+				<h6>{{ show.start_time }}</h6>
 			</div>
 		</div>
 		{% endfor %}
@@ -68,14 +68,13 @@
 			<div class="tile tile-show">
 				<img src="{{ show.artist_image_link }}" alt="Show Artist Image" />
 				<h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
-				<h6>{{ show.start_time|datetime('full') }}</h6>
+				<h6>{{ show.start_time }}</h6>
 			</div>
 		</div>
 		{% endfor %}
 	</div>
 </section>
 
-<a href="/venues/{{ venue.id }}/edit"><button class="btn btn-primary btn-lg">Edit</button></a>
+<a href="/venues/{{ venue.info.id }}/edit"><button class="btn btn-primary btn-lg">Edit</button></a>
 
 {% endblock %}
-

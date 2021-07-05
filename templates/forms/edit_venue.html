@@ -36,7 +36,7 @@
           <label for="facebook_link">Facebook Link</label>
           {{ form.facebook_link(class_ = 'form-control', placeholder='http://', autofocus = true) }}
        </div>
-      
+
        <div class="form-group">
           <label for="image_link">Image Link</label>
           {{ form.image_link(class_ = 'form-control', placeholder='http://', autofocus = true) }}
@@ -56,8 +56,9 @@
             <label for="seeking_description">Seeking Description</label>
             {{ form.seeking_description(class_ = 'form-control', autofocus = true) }}
           </div>
-      
+
       <input type="submit" value="Edit Venue" class="btn btn-primary btn-lg btn-block">
     </form>
+    <a href="/venues/{{ venue.id }}/delete"><button class="btn btn-primary btn-lg btn-block" style="background-color: red;">Delete</button></a>
   </div>
 {% endblock %}
