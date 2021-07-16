@@ -1,5 +1,12 @@
-babel==2.9.0
+alembic==1.6.5
+Babel==2.9.0
+Flask==2.0.1
+Flask-Migrate==3.0.1
+Flask-Moment==0.11.0
+Flask-SQLAlchemy==2.4.4
+Flask-WTF==0.14.3
+Jinja2==3.0.1
+psycopg2==2.8.6
 python-dateutil==2.6.0
-flask-moment==0.11.0
-flask-wtf==0.14.3
-flask_sqlalchemy==2.4.4
+SQLAlchemy==1.4.15
+WTForms==2.3.3

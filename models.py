@@ -1,4 +1,6 @@
-from app import db
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 class Venue(db.Model):
     __tablename__ = 'Venue'
@@ -16,6 +18,14 @@ class Venue(db.Model):
     seeking_description = db.Column(db.String(1000))
     genres = db.Column(db.ARRAY(db.String()))
 
+    # Relationship to shows, with a bidirectional backreference so venue attributes can be accessed via show.
+    # back ref explanation (https://hackersandslackers.com/sqlalchemy-data-models/)
+    shows = db.relationship("Show",
+        backref="Venue",
+        lazy="joined",
+        cascade="all, delete"
+    )
+
 class Artist(db.Model):
     __tablename__ = 'Artist'
 
@@ -31,6 +41,15 @@ class Artist(db.Model):
     seeking_venue =db.Column(db.Boolean)
     seeking_description = db.Column(db.String(1000))
     genres = db.Column(db.ARRAY(db.String()))
+
+    # Relationship to shows, with a bidirectional backreference so artist attributes can be accessed via show.
+    # Thank you to my reviewer for the tips on lazy="joined" and cascade="all, delete".
+    # --- didn't utilize this setup in this project but I'll have it for next time.
+    shows = db.relationship("Show",
+        backref="Artist",
+        lazy="joined",
+        cascade="all, delete"
+    )
 
 class Show(db.Model):
     __tablename__ = 'show'
